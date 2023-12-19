@@ -14,7 +14,6 @@ NProgress.configure({
   speed: 200,
 });
 
-
 const request = axios.create({
   baseURL: config.API_ROOT,
   params: {},
