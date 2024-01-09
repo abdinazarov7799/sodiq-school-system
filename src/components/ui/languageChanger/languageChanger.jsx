@@ -2,16 +2,16 @@ import {
     Box,
     Button,
     Flex,
-    HStack, Menu,
+    HStack, Image, Menu,
     MenuButton,
     MenuItem,
-    MenuList,
+    MenuList, Select,
     Text,
     useColorModeValue,
     VStack
 } from "@chakra-ui/react";
 import {FiChevronDown} from "react-icons/fi";
-import {get} from "lodash";
+import {get, isEqual} from "lodash";
 import React from "react";
 import {useSettingsStore} from "../../../store/index.js";
 import uzbFlag from "../../../assets/images/uzbekistan-flag.png";
@@ -33,30 +33,33 @@ const LanguageChanger = () => {
         setLang(code);
         return i18n.changeLanguage(code);
     };
+
   return(
-      <Menu>
-          <MenuButton
-              as={Button}
-              transition="all 0.3s"
-              _focus={{boxShadow: "none"}}
-          >
-              <HStack>
-                  <VStack
-                      display={{base: "flex", md: "flex"}}
-                      alignItems="flex-start"
-                      ml="2"
-                  >
-                      <Text fontSize="md" fontWeight={600}>{lang}</Text>
-                  </VStack>
-              </HStack>
-          </MenuButton>
-          <MenuList
-              bg={useColorModeValue("white", "gray.900")}
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-              p={0}
-          >
-              {languages?.map((language, index) => (
-                  get(language, "title") !== lang && (
+      <>
+          <Menu>
+              <MenuButton
+                  p={0}
+                  as={Button}
+                  transition="all 0.3s"
+                  background={'transparent'}
+                  _hover={{background: 'transparent'}}
+                  _focus={{background: 'transparent'}}
+              >
+                  <Flex alignItems={"center"}>
+                      {languages?.map((language) => (
+                          (isEqual(get(language,'title'),lang)) && (
+                              <Image src={language.image} borderRadius={'30px'} w="30px" h="30px" objectFit={"cover"}/>
+                          )
+                      ))}
+                      <FiChevronDown style={{fontSize: '35px'}}/>
+                  </Flex>
+              </MenuButton>
+              <MenuList
+                  bg={useColorModeValue("white", "gray.900")}
+                  borderColor={useColorModeValue("gray.200", "gray.700")}
+                  p={0}
+              >
+                  {languages?.map((language, index) => (
                       <MenuItem
                           key={index}
                           onClick={() => {
@@ -73,10 +76,10 @@ const LanguageChanger = () => {
                               <Text ml={2}>{t(get(language, "title"))}</Text>
                           </Flex>
                       </MenuItem>
-                  )
-              ))}
-          </MenuList>
-      </Menu>
+                  ))}
+              </MenuList>
+          </Menu>
+      </>
   )
 }
 export default LanguageChanger;

@@ -1,9 +1,11 @@
+import Nav from "../../../layouts/dashboard/components/Nav.jsx";
+import React from "react";
 
 
 const KPIContainer = () => {
   return(
       <>
-        <p>KPI</p>
+          <Nav moduleName={'KPI'}/>
       </>
   )
 }

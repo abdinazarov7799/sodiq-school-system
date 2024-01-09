@@ -2,16 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,
-  FormLabel,
   FormControl,
   Input,
   Button,
   InputGroup,
-  InputLeftAddon,
-  Stack,
-  Text,
+  InputLeftElement, Image, Box,
 } from "@chakra-ui/react";
-import InputMask from "react-input-mask";
+import UserImg from '../../../assets/images/User.svg';
+import LockImg from '../../../assets/images/Lock.svg';
+
 export default function LoginForm({ loginRequest = () => {}, ...rest }) {
   const {
     handleSubmit,
@@ -20,9 +19,8 @@ export default function LoginForm({ loginRequest = () => {}, ...rest }) {
   } = useForm();
 
   const onSubmit = (values) => {
-    const phone = values.login.replace(/\D/g, "");
     const data = {
-      login: phone,
+      login: values.login,
       password: values.password,
     };
     loginRequest(data);
@@ -30,52 +28,63 @@ export default function LoginForm({ loginRequest = () => {}, ...rest }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mt={8} isInvalid={errors.login}>
-        <FormLabel htmlFor="login">Phone number</FormLabel>
-        <InputGroup>
-          <InputLeftAddon children="+998" />
-          <Input
-            id="login"
-            {...register("login", {
-              required: "Phone number is required",
-              minLength: { value: 7, message: "Minimum length should be 7" },
-            })}
-            type="tel"
-            placeholder="(__) ___ __ __"
-            mask="(**)-***-****"
-            as={InputMask}
-          />
-        </InputGroup>
+      <Box width={'500px'}>
 
-        <FormErrorMessage>
-          {errors.login && errors.login.message}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl mt={5} isInvalid={errors.password}>
-        <FormLabel htmlFor={"password"}>Password</FormLabel>
-        <Input
-          id={"password"}
-          type="password"
-          placeholder={"Password"}
-          {...register("password", {
-            required: "Password  is required",
-            minLength: { value: 4, message: "Minimum length should be 4" },
-          })}
-        />
-        <FormErrorMessage>
-          {errors.password && errors.password.message}
-        </FormErrorMessage>
-      </FormControl>
-      <Stack spacing={6} color={"white"}>
+        <FormControl isInvalid={errors.login} mb={'25px'}>
+          <InputGroup>
+            <InputLeftElement pointerEvents='none' p={2} height={'60px'}>
+              <Image src={UserImg} width={24} height={24}/>
+            </InputLeftElement>
+            <Input
+                height={'60px'}
+                id="login"
+                {...register("login", {
+                  required: "Login is required",
+                  minLength: { value: 5, message: "Minimum length should be 5" },
+                })}
+                type="tel"
+                placeholder="Login"
+            />
+          </InputGroup>
+
+          <FormErrorMessage>
+            {errors.login && errors.login.message}
+          </FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={errors.password}>
+          <InputGroup>
+            <InputLeftElement pointerEvents='none' p={2} height={'60px'}>
+              <Image src={LockImg} width={24} height={24}/>
+            </InputLeftElement>
+            <Input
+                height={'60px'}
+                id={"password"}
+                type="password"
+                placeholder={"Password"}
+                {...register("password", {
+                  required: "Password  is required",
+                  minLength: { value: 4, message: "Minimum length should be 4" },
+                })}
+            />
+          </InputGroup>
+          <FormErrorMessage>
+            {errors.password && errors.password.message}
+          </FormErrorMessage>
+        </FormControl>
+
         <Button
-          mt={8}
-          colorScheme="cyan"
-          isLoading={isSubmitting}
-          type="submit"
+            mt={'230px'}
+            background={'#002540'}
+            _hover={{background: '#013d67'}}
+            color={"white"}
+            isLoading={isSubmitting}
+            type="submit"
+            width={'100%'}
         >
-          <Text color="white">Login</Text>
+          Login
         </Button>
-      </Stack>
+      </Box>
     </form>
   );
 }

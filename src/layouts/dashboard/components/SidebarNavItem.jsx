@@ -1,4 +1,4 @@
-import {Flex, Icon, Link} from "@chakra-ui/react";
+import {Flex, Icon, Image, Link} from "@chakra-ui/react";
 import React from "react";
 
 
@@ -25,14 +25,7 @@ const SidebarNavItem = ({icon, children}) => {
                 }}
             >
                 {icon && (
-                    <Icon
-                        mr="4"
-                        fontSize="16"
-                        _groupHover={{
-                            color: "white",
-                        }}
-                        as={icon}
-                    />
+                    <Image src={icon} mr={3} w={'18px'} h={"18px"}/>
                 )}
                 {children}
             </Flex>

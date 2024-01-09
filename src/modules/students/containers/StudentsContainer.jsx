@@ -1,9 +1,11 @@
+import Nav from "../../../layouts/dashboard/components/Nav.jsx";
+import React from "react";
 
 
 const StudentsContainer = () => {
   return(
       <>
-        <p>Students</p>
+          <Nav moduleName={"O'quvchilar"}/>
       </>
   )
 }

@@ -1,5 +1,5 @@
 const config = {
-  DEFAULT_APP_LANG: "Ru",
+  DEFAULT_APP_LANG: "Uz",
 }
 
 export default config;

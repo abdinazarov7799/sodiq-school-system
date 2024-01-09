@@ -5,8 +5,8 @@ import {create} from "zustand";
 
 
 let store = (set) => ({
-    user: null,
-    isAuthenticated: true,
+    user:null,
+    isAuthenticated: false,
     // breadcrumbs: [],
     setUser: (user) => set(state => ({...state, user})),
     setAuth: (isAuthenticated) => set(state => ({...state, isAuthenticated})),

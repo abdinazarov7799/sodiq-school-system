@@ -1,9 +1,11 @@
+import Nav from "../../../layouts/dashboard/components/Nav.jsx";
+import React from "react";
 
 
 const ClassesContainer = () => {
   return(
       <>
-          <p>Classes</p>
+          <Nav moduleName={'Sinflar'}/>
       </>
   )
 }

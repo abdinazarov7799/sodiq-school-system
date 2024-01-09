@@ -1,9 +1,11 @@
+import Nav from "../../../layouts/dashboard/components/Nav.jsx";
+import React from "react";
 
 
 const TeachersContainer = () => {
   return(
       <>
-        <p>Teachers</p>
+          <Nav moduleName={"O'qituvchilar"}/>
       </>
   )
 }

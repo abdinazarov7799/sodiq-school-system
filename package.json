@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "axios": "^1.6.2",
+    "css.gg": "^2.1.1",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.16.16",
     "i18next": "^23.7.11",
