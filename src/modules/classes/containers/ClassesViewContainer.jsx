@@ -24,12 +24,14 @@ import UserInfoAvatar from '../../../assets/images/userInfoAvatar.png';
 import TelIcon from '../../../assets/images/tel.svg';
 import SmsIcon from '../../../assets/images/sms.svg';
 import {CustomViewTable} from "../../../components/ui/Table.jsx";
+import Pagination from "../../../components/pagination/index.jsx";
 
 const ClassesViewContainer = () => {
     let {id} = useParams()
     const {t} = useTranslation();
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [viewID, setViewID] = useState();
+    const [page, setPage] = useState(0);
     const classData = get(mockData,`classesGroupTableData.tbody`,[])[id];
     const viewData = get(mockData,'classesViewTableData.tbody', {})[viewID];
 
@@ -101,6 +103,12 @@ const ClassesViewContainer = () => {
                           // handleDelete={handleDelete}
                           // handleEdit={handleEdit}
                           // handleMore={handleMore}
+                      />
+                      <Pagination
+                          itemTotalSize={get(mockData,'classesViewTableData.tbody',[]).length}
+                          setPage={setPage}
+                          pageCount={get(mockData, "classesViewTableData.totalPages", 0)}
+                          page={page}
                       />
                       <Drawer placement={'right'} size={'md'} onClose={onClose} isOpen={isOpen}>
                           <DrawerOverlay />
