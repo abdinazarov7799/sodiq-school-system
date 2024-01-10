@@ -9,13 +9,17 @@ import LanguageChanger from "../../../components/ui/languageChanger/languageChan
 import ThemeImg from  '../../../assets/images/theme.svg'
 import {get} from "lodash";
 import SearchImg from "../../../assets/images/Search.svg";
+import {CgChevronLeft} from "react-icons/cg";
 
 const Nav = (props) => {
     const {t} = useTranslation();
+    const getBack = () => {
+
+    }
     return (
         <Flex
             mb={'20px'}
-            px={'20px'}
+            px={'10px'}
             py={'8px'}
             height="53px"
             alignItems="center"
@@ -25,11 +29,16 @@ const Nav = (props) => {
             borderBottomColor={useColorModeValue("gray.200", "gray.700")}
             justifyContent={"space-between"}
         >
-            <Text>
-                {get(props,'moduleName','')}
-            </Text>
-            <Flex>
-                <InputGroup mr={3}>
+            <Flex alignItems={"center"}>
+                {get(props, 'backIcon',false) &&
+                    <Text cursor={"pointer"} onClick={getBack}><CgChevronLeft size={20} /></Text>}
+                <Text ml={2}>
+                    {get(props,'moduleName','')}
+                </Text>
+            </Flex>
+
+            <Flex width={'40%'}>
+                <InputGroup>
                     <InputLeftElement pointerEvents='none'>
                         <Image src={SearchImg}/>
                     </InputLeftElement>
@@ -40,10 +49,16 @@ const Nav = (props) => {
                         placeholder="Qidirish..."
                     />
                 </InputGroup>
-               <Button borderRadius={'30px'} p={0} mr={2} variant={'unstyled'}>
-                   <Image src={ThemeImg} w="30px" h="30px" m={0}/>
-               </Button>
-               <LanguageChanger />
+                {
+                    get(props,'indexPage',false) && (
+                        <>
+                            <Button borderRadius={'30px'} p={0} mx={3} variant={'unstyled'}>
+                                <Image src={ThemeImg} w="30px" h="30px" m={0}/>
+                            </Button>
+                            <LanguageChanger />
+                        </>
+                    )
+                }
            </Flex>
         </Flex>
     );

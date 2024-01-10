@@ -6,7 +6,7 @@ import {
   Input,
   Button,
   InputGroup,
-  InputLeftElement, Image, Box,
+  InputLeftElement, Image, Box,Text,
 } from "@chakra-ui/react";
 import UserImg from '../../../assets/images/User.svg';
 import LockImg from '../../../assets/images/Lock.svg';
@@ -84,6 +84,7 @@ export default function LoginForm({ loginRequest = () => {}, ...rest }) {
         >
           Login
         </Button>
+        <Text color={'#A4A4A4'} fontSize={14} mt={10} textAlign={"center"}>Copyright © 2021 of Tashkent Scholl of Sodiq</Text>
       </Box>
     </form>
   );

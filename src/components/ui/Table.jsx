@@ -1,8 +1,12 @@
-import {get} from "lodash";
+import {get, isEqual} from "lodash";
 import styled from "styled-components";
 import {Button, Image} from "@chakra-ui/react";
 import MoreIcon from '../../assets/images/tableMoreIcon.svg'
 import EditIcon from '../../assets/images/editIcon.svg'
+import InfoIcon from '../../assets/images/InfoIcon.svg'
+import DeleteIcon from '../../assets/images/deleteIcon.svg'
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const TableContainer = styled.table`
     width: 100%;
@@ -24,22 +28,34 @@ const TheadTr = styled.tr`
     }
 `
 const TheadTd = styled.td`
-
+    &:last-child{
+        text-align: center;
+    }
 `
 const TbodyTr = styled.tr`
     border-top: 1px solid #E7E7E7;
-    & p{
+
+    & p {
         padding: 20px 33px;
         color: #002540;
         font-size: 13px;
         font-weight: 400;
     }
+    
+    &:hover {
+        background: #f6f6f6;
+        cursor: pointer;
+    }
 `
 const TbodyTd = styled.td`
-
+    &:last-child{
+        text-align: center;
+    }
 `
 
-const CustomTable = ({tableData,onClickMore,onClickEdit}) => {
+export const CustomTable = ({tableData,handleMore,handleEdit}) => {
+    const [active, setActive] = useState(null);
+    const navigate = useNavigate();
     return(
         <TableContainer>
             <TableThead>
@@ -54,7 +70,7 @@ const CustomTable = ({tableData,onClickMore,onClickEdit}) => {
                             ))
                         }
                         <TheadTd>
-                            <Button onClick={onClickMore} variant={'unstyled'}><Image src={MoreIcon}/></Button>
+                            <Button onClick={handleMore} variant={'unstyled'}><Image src={MoreIcon}/></Button>
                         </TheadTd>
                     </TheadTr>
                 ))
@@ -62,8 +78,14 @@ const CustomTable = ({tableData,onClickMore,onClickEdit}) => {
             </TableThead>
             <TableTbody>
             {
-                get(tableData, 'tbody',[])?.map((tr) => (
-                    <TbodyTr>
+                get(tableData, 'tbody',[])?.map((tr,i) => (
+                    <TbodyTr
+                        onClick={() => setActive(i)}
+                        style={{backgroundColor: isEqual(active, i) && "#f6f6f6",}}
+                        onDoubleClick={() => {
+                            navigate(`/classes/view/${i}`);
+                        }}
+                    >
                         {
                             tr?.map((td) => (
                                 <TbodyTd>
@@ -74,7 +96,7 @@ const CustomTable = ({tableData,onClickMore,onClickEdit}) => {
                             ))
                         }
                         <TbodyTd>
-                            <Button onClick={onClickEdit} variant={'unstyled'}><Image src={EditIcon}/></Button>
+                            <Button onClick={handleEdit} variant={'unstyled'}><Image src={EditIcon}/></Button>
                         </TbodyTd>
                     </TbodyTr>
                 ))
@@ -83,4 +105,57 @@ const CustomTable = ({tableData,onClickMore,onClickEdit}) => {
         </TableContainer>
     )
 }
-export default CustomTable;
+export const CustomViewTable = ({tableData,handleMore,handleEdit,handleInfo,handleDelete}) => {
+    const [active, setActive] = useState(null);
+    const navigate = useNavigate();
+    return(
+        <TableContainer>
+            <TableThead>
+                {
+                    get(tableData, 'thead',[])?.map((tr) => (
+                        <TheadTr>
+                            {
+                                tr?.map((td) => (
+                                    <TheadTd>
+                                        <p>{td}</p>
+                                    </TheadTd>
+                                ))
+                            }
+                            <TheadTd>
+                                <Button onClick={handleMore} variant={'unstyled'}><Image src={MoreIcon}/></Button>
+                            </TheadTd>
+                        </TheadTr>
+                    ))
+                }
+            </TableThead>
+            <TableTbody>
+                {
+                    get(tableData, 'tbody',[])?.map((tr,i) => (
+                        <TbodyTr
+                            onClick={() => setActive(i)}
+                            style={{backgroundColor: isEqual(active, i) && "#f6f6f6",}}
+                            onDoubleClick={() => handleInfo(i)}
+                        >
+                            {
+                                tr?.map((td) => (
+                                    <TbodyTd>
+                                        <p>
+                                            {td}
+                                        </p>
+                                    </TbodyTd>
+                                ))
+                            }
+                            <TbodyTd>
+                                <Button onClick={() => handleInfo(i)} variant={'unstyled'}><Image src={InfoIcon}/></Button>
+                                <Button onClick={handleDelete} variant={'unstyled'}><Image src={DeleteIcon}/></Button>
+                                <Button onClick={handleEdit} variant={'unstyled'}><Image src={EditIcon}/></Button>
+                            </TbodyTd>
+                        </TbodyTr>
+                    ))
+                }
+            </TableTbody>
+        </TableContainer>
+    )
+}
+
+

@@ -5,7 +5,7 @@ import React from "react";
 const KPIContainer = () => {
   return(
       <>
-          <Nav moduleName={'KPI'}/>
+          <Nav moduleName={'KPI'} indexPage={true}/>
       </>
   )
 }

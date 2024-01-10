@@ -5,7 +5,7 @@ import React from "react";
 const JournalContainer = () => {
   return(
       <>
-          <Nav moduleName={'Jurnal'}/>
+          <Nav moduleName={'Jurnal'} indexPage={true}/>
       </>
   )
 }

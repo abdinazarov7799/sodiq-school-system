@@ -5,7 +5,7 @@ import React from "react";
 const SciencesContainer = () => {
     return(
         <>
-            <Nav moduleName={'Fanlar'}/>
+            <Nav moduleName={'Fanlar'} indexPage={true}/>
         </>
     )
 }

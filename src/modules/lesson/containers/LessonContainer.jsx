@@ -5,7 +5,7 @@ import React from "react";
 const LessonContainer = () => {
   return(
       <>
-          <Nav moduleName={'Dars jadvali'}/>
+          <Nav moduleName={'Dars jadvali'} indexPage={true}/>
       </>
   )
 }

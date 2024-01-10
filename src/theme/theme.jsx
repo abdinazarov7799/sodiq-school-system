@@ -35,7 +35,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: #707070;
+    color: #002540;
     font-size: 16px;
     line-height: 1.45;
     font-weight: 400;

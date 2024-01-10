@@ -5,7 +5,7 @@ import React from "react";
 const TeachersContainer = () => {
   return(
       <>
-          <Nav moduleName={"O'qituvchilar"}/>
+          <Nav moduleName={"O'qituvchilar"} indexPage={true}/>
       </>
   )
 }

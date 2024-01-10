@@ -16,6 +16,7 @@ import LessonPage from "../modules/lesson/pages/LessonPage.jsx";
 import JournalPage from "../modules/journal/pages/JournalPage.jsx";
 import KPIPage from "../modules/kpi/pages/KPIPage.jsx";
 import LoginPage from "../modules/auth/pages/LoginPage.jsx";
+import ClassesViewPage from "../modules/classes/pages/ClassesViewPage.jsx";
 
 
 const Router = () => {
@@ -31,10 +32,10 @@ const Router = () => {
                 index
                 element={<ClassesPage/>}
               />
-              {/*<Route*/}
-              {/*    path={"classes/view/:id"}*/}
-              {/*    element={}*/}
-              {/*/>*/}
+              <Route
+                  path={"classes/view/:id"}
+                  element={<ClassesViewPage/>}
+              />
               <Route
                 path={"/teachers"}
                 index

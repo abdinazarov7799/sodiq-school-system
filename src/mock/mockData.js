@@ -5,6 +5,7 @@ const mockData  = {
     userName: 'Ahad Kadirov',
     userRole: "O'qituvchi",
     classesGroupTableData: {
+        totalPages: 10,
         thead: [
             ['#','Sinf Nomlari',"O'quvchi soni","Guruh","Sinf Rahbar"]
         ],
@@ -19,6 +20,22 @@ const mockData  = {
             ['08',"9”E”-sinf","23 nafar","Guruh №1","Muhammadrasul Olimov"],
             ['09',"9”E”-sinf","23 nafar","Guruh №1","Muhammadrasul Olimov"],
             ['10',"9”E”-sinf","23 nafar","Guruh №1","Muhammadrasul Olimov"],
+        ]
+    },
+    classesViewTableData: {
+        totalPages: 8,
+        thead: [
+            ['#','F.I.SH',"TELEFON NOMER","HISOB HOLATI","O`QUVCHI GRANTLARI"]
+        ],
+        tbody: [
+            ['01',"Zoir Sobirov","+998(90)123-45-67","UZS 850.000","5%"],
+            ['02',"Ziyoda Sobirova","+998(90)123-45-67","UZS -550.000","0`%"],
+            ['03',"Kamola Rustamova","+998(90)123-45-67","UZS 850.000","0%"],
+            ['04',"Aziz Kamolov","+998(90)123-45-67","UZS 850.000","0%"],
+            ['05',"Muhammadrasul Olimov","+998(90)123-45-67","UZS -370.000","5%"],
+            ['06',"Shahrizoda Sayitmurodova","+998(90)123-45-67","UZS -105.000","0%"],
+            ['07',"Dilshod Zaripov","+998(90)123-45-67","UZS 850.000","0%"],
+            ['08',"Dilshod Zaripov","+998(90)123-45-67","UZS 850.000","0%"],
         ]
     }
 }
