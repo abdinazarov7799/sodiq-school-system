@@ -14,7 +14,7 @@ let store = (set) => ({
 })
 
 let settingsStore = (set) => ({
-    token: true,
+    token: null,
     lang: storage.get('lang') ||  config.DEFAULT_APP_LANG,
     setToken: (token) => set(state => ({...state, token})),
     setLang: (lang) => set(state => ({...state, lang})),
